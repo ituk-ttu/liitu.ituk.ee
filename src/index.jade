@@ -6,9 +6,41 @@ head
     title Liitu ITÜKiga!
     script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
     link(rel="stylesheet" href="assets/css/master.css")
-    link(href='https://fonts.googleapis.com/css?family=Raleway:400italic,600,400&subset=latin,latin-ext' rel='stylesheet' type='text/css')
-    script(src="assets/js/app.js")
+    link(href='https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css')
+    script(src="https://unpkg.com/vue")
 html
     body
+        .hero
+            .hero-container
+                .container
+                    a(href="https://ituk.ee").logo-link
+                        img(src="assets/img/icon-white.svg")
+                    .hero-text-wrapper
+                        .hero-text
+                            h1 Hei!
+                            p.subtitle
+                                | I had to take some time off until I was able to crush it at 100%,
+                                |  at which point I resumed crushing it full-time.
 
 
+        .container.signup-form-container#app
+            .row
+                .col-md-8.form-group
+                    label.control-label(for="name") Nimi
+                    input.form-control(id="name" v-model="joiner.name")
+                .col-md-4.form-group
+                    label.control-label(for="personalCode") Isikukood
+                    input.form-control(id="personalCode" v-model="joiner.personalCode")
+            .row
+                .col-md-4.form-group
+                    label.control-label(for="email") E-mail
+                    input.form-control(id="email" v-model="joiner.email")
+                .col-md-4.form-group
+                    label.control-label(for="phone") Telefoni number
+                    input.form-control(id="phone" v-model="joiner.phone")
+                .col-md-4.form-group
+                    label.control-label(for="curriculum") Õppekava kood
+                    input.form-control(id="curriculum" v-model="joiner.curriculum")
+            .row.text-center
+                button.btn-primary.btn: span.submit-text Saada
+    script(src="assets/js/app.js")
