@@ -1,5 +1,5 @@
 .idea/
-dest/
+build/
 bower_components/
 node_modules/
 

@@ -13,7 +13,7 @@ var es = require('event-stream');
 var dir = {
     assets: "assets/",
     src: "src/",
-    dest: "dest/",
+    dest: "build/",
     bower: "bower_components/"
 };
 
@@ -34,6 +34,10 @@ gulp.task("jade", function () {
         {
             src: "*.jade",
             dest: ""
+        },
+        {
+            src: "templates/**/*jade",
+            dest: "templates/"
         }
     ];
     for(var i = 0; i < locations.length; i++) {
@@ -61,14 +65,9 @@ gulp.task("img", function () {
         .pipe(gulp.dest(dir.dest + dir.assets + 'img/'))
 });
 
-gulp.task("php", function () {
-    gulp.src(dir.src + 'php/*.php')
-        .pipe(gulp.dest(dir.dest + 'php/'))
-});
+gulp.task("compile", ["jade", "js", "less", "img"]);
 
-gulp.task("compile", ["jade", "js", "less", "img", "php"]);
-
-gulp.task("default", ["jade", "js", "less", "img", "php"], function() {
+gulp.task("default", ["jade", "js", "less", "img"], function() {
     gulp.watch(dir.src + dir.assets + "js/**/*.js", function() {
         gulp.run("js");
     });
@@ -80,8 +79,5 @@ gulp.task("default", ["jade", "js", "less", "img", "php"], function() {
     });
     gulp.watch(dir.src + dir.assets + "img/**/*.{jpg,png,svg}", function() {
         gulp.run("img");
-    });
-    gulp.watch(dir.src + dir.assets + "php/*.php", function() {
-        gulp.run("php");
     });
 });

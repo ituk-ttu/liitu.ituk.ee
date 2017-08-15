@@ -1,0 +1,28 @@
+.hero
+    .hero-container
+        .container
+            a(href="https://ituk.ee").logo-link
+                img(src="assets/img/icon-white.svg")
+            .hero-text-wrapper
+                .hero-text
+                    h1 Hei!
+                    p.subtitle
+                        | I had to take some time off until I was able to crush it at 100%,
+                        |  at which point I resumed crushing it full-time.
+form.container.signup-form-container(ng-submit="submit()")
+    .row
+        .col-md-8.form-group
+            label.control-label(for="name") Nimi
+            input.form-control(id="name" ng-model="application.name" required)
+        .col-md-4.form-group
+            label.control-label(for="personalCode") Isikukood
+            input.form-control(id="personalCode" ng-model="application.personalCode" required)
+    .row
+        .col-md-8.form-group
+            label.control-label(for="email") E-mail
+            input.form-control(id="email" ng-model="application.email" required)
+        .col-md-4.form-group
+            label.control-label(for="studentCode") Üliõpilaskood
+            input.form-control(id="studentCode" ng-model="application.studentCode" required)
+    .row.text-center
+        button.btn-primary.btn(type="submit"): span.submit-text Saada
