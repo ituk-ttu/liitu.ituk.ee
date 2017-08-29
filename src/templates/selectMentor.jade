@@ -1,9 +1,9 @@
 .container.mentor-select
     a(href="https://ituk.ee").logo-link
         img(src="assets/img/icon-purple.svg")
-    div.text-center(ng-if="loading")
-         i.fa.fa-4x.fa-circle-o-notch.fa-spin.fa-fw
-    div(ng-if="!loading")
+    div.text-center.loading-container(ng-if="loading")
+         .loading-spinner
+    div(ng-if="!loading && application.mentor == null")
         span(ng-if="origin == 'apply'")
             h1.text-center Sinu avaldus on salvestatud!
             h2.text-center.no-bottom-margin
@@ -20,7 +20,7 @@
         .row.mentors
             .col-lg-4.col-sm-6.col-xs-12(ng-repeat="mentor in mentors")
                 .mentor
-                    img.mentor-photo(ng-src="{{mentor.photo}}")
+                    img.mentor-photo(data-ng-src="data:image/png;base64,{{mentor.photo}}")
                     .mentor-info
                         p.mentor-name {{mentor.mentorship.name}}
                         p.mentor-curriculum {{mentor.curriculum}}
@@ -31,3 +31,21 @@
                                 ng-src="{{mentor.gif}}")
                         p.mentor-quote: em {{mentor.quote}}
                         a.btn.btn-primary.btn-block(ng-click="select(mentor.id)") Vali
+    div(ng-if="!loading && application.mentor != null")
+        h1.text-center Sinu mentori valik on salvestatud!
+        h2.text-center.no-bottom-margin Sinu mentorit on su valikust teavitatud.
+        h2.text-center.no-top-margin Nüüd pole muud teha kui ootama jääda, sinu mentor võtab sinuga ise ühendust!
+        .row.mentors
+            .col-lg-4.col-sm-6.col-xs-12
+                .mentor.mentor-selected
+                    img.mentor-photo(data-ng-src="data:image/png;base64,{{application.mentor.photo}}")
+                    .mentor-info
+                        p.mentor-name {{application.mentor.mentorship.name}}
+                        p.mentor-curriculum {{application.mentor.curriculum}}
+                        p.mentor-description {{application.mentor.text}}
+                        a.gif-btn(ng-click="openGifs[mentor.id] = true" ng-if="openGifs[mentor.id] != true")
+                            | Lemmik GIF +
+                        a.gif-btn(ng-click="openGifs[mentor.id] = false" ng-if="openGifs[mentor.id] == true")
+                            | Lemmik GIF -
+                        img.mentor-gif(ng-if="openGifs[mentor.id] == true" ng-src="{{application.mentor.gif}}")
+                        p.mentor-quote: em {{application.mentor.quote}}

@@ -1,13 +1,6 @@
 app.controller("joinController", ["$q", "$scope", "$stateParams", "$rootScope", "$state", "$http",
     function ($q, $scope, $stateParams, $rootScope, $state, $http) {
         $scope.status = "FILLING"; // FILLING, SENDING, ERROR, SUCCESS
-        $scope.hasError = {
-            name: false,
-            personalCode: false,
-            email: false,
-            phone: false,
-            studentCode: false
-        };
 
         $scope.application = {
             name: "",
@@ -15,6 +8,11 @@ app.controller("joinController", ["$q", "$scope", "$stateParams", "$rootScope", 
             email: "",
             phone: "",
             studentCode: ""
+        };
+
+        $scope.patterns = {
+            personalCode: "^[1-6][0-9]{2}[1,2][0-9][0-9]{2}[0-9]{4}$",
+            studentCode: "^[0-1][0-9]{5}(IAPB|IADB)$"
         };
 
         $scope.submit = function () {

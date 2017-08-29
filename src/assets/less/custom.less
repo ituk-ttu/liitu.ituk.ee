@@ -101,6 +101,9 @@ input:focus {
         border-radius: 4px;
         margin-top: 50px;
         margin-bottom: 50px;
+        &.mentor-selected {
+            box-shadow: 4px 0 38px rgba(135, 0, 66, .1), 1px 0 8px rgba(135, 0, 66, .05);
+        }
         .mentor-photo, .mentor-gif {
             width: 100%;
         }
@@ -133,4 +136,34 @@ input:focus {
         flex-wrap: wrap;
         justify-content: center;
     }
+}
+
+.loading-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-spinner {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    border: .5rem solid #e8e8e9;
+    border-top-color: #818182;
+    animation: spin 0.4s infinite linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.text-small {
+    font-size: @font-size-small;
+    margin-top: @grid-gutter-width;
 }

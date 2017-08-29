@@ -8,6 +8,7 @@ app.controller("selectMentorController", ["$q", "$scope", "$stateParams", "$root
 
         function init() {
             $scope.loading = true;
+            $scope.openGifs = {};
             $scope.origin = $stateParams.origin;
             $http.get(apiBase + '/' + $stateParams.id + '/' + $stateParams.mentorSelectionCode)
                 .success(function (application) {
