@@ -25,7 +25,7 @@ form.container.signup-form-container(ng-submit="submit()" novalidate name="form"
         .col-md-4.form-group(ng-class="{ 'has-error': form.studentCode.$invalid && form.studentCode.$dirty }")
             label.control-label(for="studentCode") Üliõpilaskood
             input.form-control(id="studentCode" ng-model="application.studentCode" required type="text"
-                               ng-pattern="patterns.studentCode" name="studentCode")
+                               ng-pattern="patterns.studentCode" name="studentCode" placeholder="123456ABCD")
     .row.text-center
         button.btn-primary.btn(type="submit" ng-disabled="form.$invalid"): span.submit-text Saada
     .row
