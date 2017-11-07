@@ -11,8 +11,7 @@ app.controller("joinController", ["$q", "$scope", "$stateParams", "$rootScope", 
         };
 
         $scope.patterns = {
-            personalCode: "^[0-9]{11}",
-            studentCode: "^[0-9]{6}(IACB|IASB|IAEB|IALB|IAAB|IADB|IAIB|IAPB|IVSB|IATB|IABB|IASM|YADM|YABM|IVGM|IAEM|IVEM|IAPM|IAAM|IVCM|IVSM|IATM|YVEM|IABM|IAQD|IDAR|IDDR|IDSR|IDCR)$"
+            personalCode: "^[0-9]{11}"
         };
 
         $scope.submit = function () {
