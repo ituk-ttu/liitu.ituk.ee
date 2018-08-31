@@ -12,7 +12,7 @@
 form.container.signup-form-container(ng-submit="submit()" novalidate name="form")
     .row
         .col-md-8.form-group
-            label.control-label(for="name") Nimi
+            label.control-label(for="name") Täisnimi
             input.form-control(id="name" name="name" ng-model="application.name" required)
         .col-md-4.form-group(ng-class="{ 'has-error': form.personalCode.$invalid && form.personalCode.$dirty }")
             label.control-label(for="personalCode") Isikukood
