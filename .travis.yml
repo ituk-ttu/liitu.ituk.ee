@@ -3,9 +3,6 @@ addons:
     packages:
       - rsync
       - sshpass
-before_script:
-  - npm install -g bower
-    npm install -g gulp
 sudo: true
 dist: trusty
 node_js: "stable"
@@ -13,6 +10,6 @@ install: npm install
 branches:
   only:
     - master
-script: gulp
+script: install.sh
 after_success:
   - test $TRAVIS_BRANCH = "master" && rsync -chavzP --rsh="sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no -l $SSH_USERNAME" build/* $SSH_USERNAME@ituk.ee:/var/liitu/build
