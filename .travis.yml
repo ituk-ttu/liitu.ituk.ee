@@ -4,8 +4,8 @@ addons:
       - rsync
       - sshpass
 before_script:
-  - npm install -g gulp-cli
-  - npm install gulp
+  - npm install -g bower
+    npm install -g gulp
 sudo: true
 dist: trusty
 node_js: "stable"
