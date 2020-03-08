@@ -11,21 +11,30 @@
                         | Palun täida ära allolev vorm, misjärel saame sinuga ise ühendust võtta!
 form.container.signup-form-container(ng-submit="submit()" novalidate name="form")
     .row
-        .col-md-8.form-group
-            label.control-label(for="name") Täisnimi
-            input.form-control(id="name" name="name" ng-model="application.name" required)
-        .col-md-4.form-group(ng-class="{ 'has-error': form.personalCode.$invalid && form.personalCode.$dirty }")
-            label.control-label(for="personalCode") Isikukood
-            input.form-control(id="personalCode" ng-model="application.personalCode" required type="text"
-                               ng-pattern="patterns.personalCode" name="personalCode")
+        .col-md-6.form-group
+            label.control-label(for="firstName") Eesnimi
+            input.form-control(id="firstName" name="firstName" ng-model="application.firstName" required)
+        .col-md-6.form-group
+            label.control-label(for="lastName") Perekonnanimi
+            input.form-control(id="lastName" name="lastName" ng-model="application.lastName" required)
     .row
-        .col-md-8.form-group(ng-class="{ 'has-error': form.email.$invalid && form.email.$dirty }")
+        .col-md-6.form-group(ng-class="{ 'has-error': form.email.$invalid && form.email.$dirty }")
             label.control-label(for="email") E-mail
             input.form-control(id="email" ng-model="application.email" required type="email" name="email")
-        .col-md-4.form-group(ng-class="{ 'has-error': form.studentCode.$invalid && form.studentCode.$dirty }")
+        .col-md-6.form-group(ng-class="{ 'has-error': form.personalCode.$invalid && form.personalCode.$dirty }")
+            label.control-label(for="personalCode") Isikukood
+            input.form-control(id="personalCode" ng-model="application.personalCode" required type="text"
+                ng-pattern="patterns.personalCode" name="personalCode")
+    .row
+        .col-md-12.form-group(ng-class="{ 'has-error': form.studentCode.$invalid && form.studentCode.$dirty }")
             label.control-label(for="studentCode") Üliõpilaskood
             input.form-control(id="studentCode" ng-model="application.studentCode" required type="text"
-                               ng-pattern="/^[0-9]{6}[a-zA-Z]{3,4}$/i" name="studentCode" placeholder="123456ABCD")
+                ng-pattern="/^[0-9]{6}[a-zA-Z]{3,4}$/i" name="studentCode" placeholder="123456ABCD")
+        //.col-md-6.form-group(ng-class="{ 'has-error': form.curriculum.$invalid && form.curriculum.$dirty }")
+        //    label.control-label(for="curriculum") Õppekavakood
+        //    input.form-control(id="curriculum" ng-model="application.curriculum" required type="text"
+        //        ng-pattern="/^[a-zA-Z]{3,4}$/i" name="curriculum" placeholder="ABCD")
+
     .row.text-center
         button.btn-primary.btn(type="submit" ng-disabled="form.$invalid"): span.submit-text Saada
     .row

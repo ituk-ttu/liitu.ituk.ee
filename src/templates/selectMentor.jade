@@ -20,9 +20,9 @@
         .row.mentors
             .col-lg-4.col-sm-6.col-xs-12(ng-repeat="mentor in mentors")
                 .mentor
-                    img.mentor-photo(data-ng-src="data:image/png;base64,{{mentor.photo}}")
+                    img.mentor-photo(data-ng-src="{{mentor.picture}}")
                     .mentor-info
-                        p.mentor-name {{mentor.mentorship.name}}
+                        p.mentor-name {{mentor.user.firstName}} {{mentor.user.lastName}}
                         p.mentor-curriculum {{mentor.curriculum}}
                         p.mentor-description {{mentor.text}}
                         a.gif-btn(ng-click="openGifs[mentor.id] = true" ng-if="openGifs[mentor.id] != true") Lemmik GIF +
@@ -38,9 +38,9 @@
         .row.mentors
             .col-lg-4.col-sm-6.col-xs-12
                 .mentor.mentor-selected
-                    img.mentor-photo(data-ng-src="data:image/png;base64,{{application.mentor.photo}}")
+                    img.mentor-photo(data-ng-src="{{application.mentor.picture}}")
                     .mentor-info
-                        p.mentor-name {{application.mentor.mentorship.name}}
+                        p.mentor-name {{application.mentor.user.name}}
                         p.mentor-curriculum {{application.mentor.curriculum}}
                         p.mentor-description {{application.mentor.text}}
                         a.gif-btn(ng-click="openGifs[mentor.id] = true" ng-if="openGifs[mentor.id] != true")
