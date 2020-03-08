@@ -22,7 +22,7 @@ app.controller("joinController", ["$q", "$scope", "$stateParams", "$rootScope", 
             if (checkFields()) {
                 $scope.status = "SENDING";
                 $scope.application.curriculum = $scope.application.studentCode.substring(6);
-                $http.post(apiBase, $scope.application)
+                $http.post(apiBase + '/application', $scope.application)
                     .success(function (application) {
                         $scope.status = "SUCCESS";
                         $state.go('selectMentor', {

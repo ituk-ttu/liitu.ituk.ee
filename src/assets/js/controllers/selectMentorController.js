@@ -10,17 +10,17 @@ app.controller("selectMentorController", ["$q", "$scope", "$stateParams", "$root
             $scope.loading = true;
             $scope.openGifs = {};
             $scope.origin = $stateParams.origin;
-            $http.get(apiBase + '/apply/' + $stateParams.id + '/' + $stateParams.mentorSelectionCode)
+            $http.get(apiBase + '/application/apply/' + $stateParams.id + '/' + $stateParams.mentorSelectionCode)
                 .success(function (application) {
                     $scope.application = application;
                     if($scope.application.mentor != null) {
-                        $http.get(apiBase2 + '/mentor/' + $scope.application.mentor.mentorId)
+                        $http.get(apiBase + '/mentor/' + $scope.application.mentor.id)
                             .success(function (mentors) {
                                 $scope.mentors = mentors;
                                 $scope.loading = false;
                         })
                     } else {
-                        $http.get(apiBase2 + '/mentor/active')
+                        $http.get(apiBase + '/mentor/active')
                             .success(function (mentors) {
                                 $scope.mentors = random(mentors);
                                 $scope.loading = false;
@@ -39,7 +39,7 @@ app.controller("selectMentorController", ["$q", "$scope", "$stateParams", "$root
                 applicationId: $scope.application.applicationId,
                 mentorId: id
             };
-            $http.put(apiBase + '/mentor/', $scope.applicationPost)
+            $http.put(apiBase + '/application/mentor/', $scope.applicationPost)
                 .success(function (application) {
                     init();
                 })
