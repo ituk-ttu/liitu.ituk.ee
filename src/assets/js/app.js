@@ -1,9 +1,9 @@
 // Environment variables
 
 if (window.location.hostname === "localhost"){
-    apiBase = "https://dev.hub.ituk.ee";
+    apiBase = "https://master.hub.ituk.ee";
 } else {
-    apiBase = "https://dev.hub.ituk.ee";
+    apiBase = "https://master.hub.ituk.ee";
 }
 
 var app = angular.module("joinItuk", [
