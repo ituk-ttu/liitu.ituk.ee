@@ -10,14 +10,23 @@ app.controller("selectMentorController", ["$q", "$scope", "$stateParams", "$root
             $scope.loading = true;
             $scope.openGifs = {};
             $scope.origin = $stateParams.origin;
-            $http.get(apiBase + '/' + $stateParams.id + '/' + $stateParams.mentorSelectionCode)
+            $http.get(apiBase + '/application/apply/' + $stateParams.id + '/' + $stateParams.mentorSelectionCode)
                 .success(function (application) {
                     $scope.application = application;
-                    $http.get(apiBase + '/mentors')
-                        .success(function (mentors) {
-                            $scope.mentors = random(mentors);
-                            $scope.loading = false;
+                    if($scope.application.mentor != null) {
+                        $http.get(apiBase + '/mentor/' + $scope.application.mentor.id)
+                            .success(function (mentors) {
+                                $scope.mentors = mentors;
+                                $scope.loading = false;
                         })
+                    } else {
+                        $http.get(apiBase + '/mentor/active')
+                            .success(function (mentors) {
+                                $scope.mentors = random(mentors);
+                                $scope.loading = false;
+                            })
+                    }
+
                 }).error(function () {
                     $state.go("join");
                 }
@@ -26,7 +35,11 @@ app.controller("selectMentorController", ["$q", "$scope", "$stateParams", "$root
         
         $scope.select = function (id) {
             $scope.loading = true;
-            $http.post(apiBase + '/mentor/' + $stateParams.id + '/' + $stateParams.mentorSelectionCode, {mentorId: id})
+            $scope.applicationPost = {
+                applicationId: $scope.application.applicationId,
+                mentorId: id
+            };
+            $http.put(apiBase + '/application/mentor/', $scope.applicationPost)
                 .success(function (application) {
                     init();
                 })
