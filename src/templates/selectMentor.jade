@@ -20,7 +20,7 @@
         .row.mentors
             .col-lg-4.col-sm-6.col-xs-12(ng-repeat="mentor in mentors")
                 .mentor
-                    img.mentor-photo(data-ng-src="{{mentor.picture}}")
+                    img.mentor-photo(data-ng-src="{{ apiLocation + '/mentor/' + mentor.id + '/picture' }}")
                     .mentor-info
                         p.mentor-name {{mentor.user.firstName}} {{mentor.user.lastName}}
                         p.mentor-curriculum {{mentor.curriculum}}
