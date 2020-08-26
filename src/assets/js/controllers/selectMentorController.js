@@ -5,6 +5,7 @@ app.controller("selectMentorController", ["$q", "$scope", "$stateParams", "$root
         $scope.application = null;
         $scope.origin = null;
         $scope.openGifs = {};
+        $scope.apiLocation = apiBase;
 
         function init() {
             $scope.loading = true;
@@ -32,7 +33,7 @@ app.controller("selectMentorController", ["$q", "$scope", "$stateParams", "$root
                 }
             );
         }
-        
+
         $scope.select = function (id) {
             $scope.loading = true;
             $scope.applicationPost = {
