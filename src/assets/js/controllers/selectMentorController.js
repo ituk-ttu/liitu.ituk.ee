@@ -44,8 +44,19 @@ app.controller("selectMentorController", ["$q", "$scope", "$stateParams", "$root
                 .success(function (application) {
                     init();
                 })
-                .error(function (error) {
+                .error(function (response) {
+                    let errorMessage = "";
+                    $scope.error = response;
+                    $scope.error.messages.forEach(element => {
+                        if (element.code === "mentor.not.active") {
+                            errorMessage += "Kahjuks see mentor pole enam aktiivne, vali keegi teine";
+                        } else {
+                            errorMessage += element.code;
+                        }
+                    });
+                    alert(errorMessage);
                     $scope.loading = false;
+                    $state.reload();
                 })
         };
 
