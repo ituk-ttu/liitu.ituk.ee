@@ -28,8 +28,8 @@ app.controller("selectMentorController", ["$q", "$scope", "$stateParams", "$root
                             })
                     }
 
-                }).error(function () {
-                    $state.go("join");
+                }).error(function (response) {
+                    alert(response);
                 }
             );
         }
