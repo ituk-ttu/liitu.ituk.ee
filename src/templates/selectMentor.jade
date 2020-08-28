@@ -23,7 +23,7 @@
                     img.mentor-photo(data-ng-src="{{ apiLocation + '/mentor/' + mentor.id + '/picture' }}")
                     .mentor-info
                         p.mentor-name {{mentor.user.firstName}} {{mentor.user.lastName}}
-                        p.mentor-curriculum {{mentor.curriculum}}
+                        p.mentor-curriculum {{mentor.user.curriculum}}
                         p.mentor-description {{mentor.text}}
                         a.gif-btn(ng-click="openGifs[mentor.id] = true" ng-if="openGifs[mentor.id] != true") Lemmik GIF +
                         a.gif-btn(ng-click="openGifs[mentor.id] = false" ng-if="openGifs[mentor.id] == true") Lemmik GIF -
