@@ -36,7 +36,9 @@ app.controller("joinController", ["$q", "$scope", "$stateParams", "$rootScope", 
                         $scope.error = response;
                         $scope.error.messages.forEach(element => {
                             if (element.code === "personalCode.incorrect") {
-                                errorMessage += "Viga isikukoodis";
+                                errorMessage += "Viga isikukoodis! \n";
+                            } else if (element.code === "studentCode.incorrect") {
+                                errorMessage += "Viga üliõpilaskoodis! \n";
                             } else {
                                 errorMessage += element.code;
                             }
