@@ -29,7 +29,16 @@ app.controller("selectMentorController", ["$q", "$scope", "$stateParams", "$root
                     }
 
                 }).error(function (response) {
-                    alert(response);
+                    let errorMessage = "";
+                    $scope.error = response;
+                    $scope.error.messages.forEach(element => {
+                        if (element.code === "personalCode.incorrect") {
+                            errorMessage += "Viga isikukoodis";
+                        } else {
+                            errorMessage += element.code;
+                        }
+                    });
+                    alert(errorMessage);
                 }
             );
         }
