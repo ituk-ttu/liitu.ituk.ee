@@ -31,7 +31,17 @@ app.controller("joinController", ["$q", "$scope", "$stateParams", "$rootScope", 
                             origin: "application"
                         });
                     })
-                    .error(function (error) {
+                    .error(function (response) {
+                        let errorMessage = "";
+                        $scope.error = response;
+                        $scope.error.messages.forEach(element => {
+                            if (element.code === "personalCode.incorrect") {
+                                errorMessage += "Viga isikukoodis";
+                            } else {
+                                errorMessage += element.code;
+                            }
+                        });
+                        alert(errorMessage);
                         $scope.status = "ERROR";
                     });
             }
