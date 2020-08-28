@@ -55,8 +55,7 @@ app.controller("selectMentorController", ["$q", "$scope", "$stateParams", "$root
                         }
                     });
                     alert(errorMessage);
-                    $scope.loading = false;
-                    $state.reload();
+                    init();
                 })
         };
 
