@@ -1,15 +1,25 @@
 addons:
+  ssh_known_hosts:
+    - ituk.ee
   apt:
     packages:
-      - rsync
-      - sshpass
+    - rsync
+    - sshpass
 sudo: true
 dist: trusty
-node_js: "stable"
-install: npm install -g bower gulp@3.9.1 && npm install --save-dev bower gulp@3.9.1 gulp-jade gulp-less gulp-plumber gulp-sourcemaps gulp-uglify gulp-concat gulp-watch event-stream && bower install
+node_js: stable
+before_install:
+  - openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
+    -in deploy_rsa.enc -out deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 deploy_rsa
+  - ssh-add deploy_rsa
+install: npm install -g bower gulp@3.9.1 && npm install --save-dev bower gulp@3.9.1
+  gulp-jade gulp-less gulp-plumber gulp-sourcemaps gulp-uglify gulp-concat gulp-watch
+  event-stream && bower install
 branches:
   only:
-    - master
+  - master
 script: gulp compile
 after_success:
-  - test $TRAVIS_BRANCH = "master" && rsync -chavzP --rsh="sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no -l $SSH_USERNAME" build/* $SSH_USERNAME@ituk.ee:/var/liitu/build
+- rsync -chavzP --rsh="ssh -l $SSH_USERNAME" build/* $SSH_USERNAME@ituk.ee:/var/liitu/build
