@@ -22,4 +22,4 @@ branches:
   - master
 script: gulp compile
 after_success:
-- rsync -chavzP --rsh="ssh -l $SSH_USERNAME" build/* $SSH_USERNAME@ituk.ee:/var/liitu/build
+- rsync -rchavzP --rsh="ssh -l $SSH_USERNAME" build/* $SSH_USERNAME@ituk.ee:/var/liitu/build
